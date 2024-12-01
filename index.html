@@ -32,6 +32,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <!-- CSS do CookieConsent -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.css" />
+    <!-- Script do CookieConsent -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.js"></script>
 
 </head>
 
@@ -457,6 +461,7 @@
                 </div> <!-- end s-footer__contact -->
 
             </div> <!-- end s-footer__top -->
+            <p><a href="/politica-de-privacidade.html">Política de Privacidade</a></p>
 
 
 
@@ -469,6 +474,26 @@
     ================================================== -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
-
+    <script>
+        window.addEventListener("load", function(){
+          window.cookieconsent.initialise({
+            "palette": {
+              "popup": {
+                "background": "#000"
+              },
+              "button": {
+                "background": "#f1d600"
+              }
+            },
+            "content": {
+              "message": "Este site utiliza cookies para melhorar a experiência do usuário.",
+              "dismiss": "Entendi!",
+              "link": "Saiba mais",
+              "href": "/politica-de-privacidade.html"
+            }
+          });
+        });
+        </script>
+        
 </body>
 </html>
