@@ -174,7 +174,12 @@ footer {
 .tabela-programacao thead {
   background-color: var(--primary-color);
   color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 1rem;
 }
+
 
 .tabela-programacao th,
 .tabela-programacao td {
