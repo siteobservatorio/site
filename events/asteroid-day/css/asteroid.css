@@ -131,7 +131,7 @@
 .hero {
     position: relative;
     background: url('../images/asteroid-hero.png') center/cover no-repeat;
-    height: 60vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
