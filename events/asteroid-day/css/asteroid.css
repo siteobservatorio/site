@@ -245,3 +245,69 @@ footer {
     background-position: -200% center;
   }
 }
+
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../images/starfield.png') repeat;
+  animation: moveStars 40s linear infinite;
+  opacity: 0.05;
+}
+
+@keyframes moveStars {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
+
+.cometa {
+  position: fixed;
+  top: 10%;
+  left: -200px;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  box-shadow: 0 0 8px #fff;
+  animation: cometaPassa 15s linear infinite;
+  z-index: 1000;
+}
+
+@keyframes cometaPassa {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(120vw) translateY(-40vh); opacity: 0; }
+}
+
+.btn {
+  position: relative;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(240,165,0,0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(240,165,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(240,165,0,0); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url('../images/stars.gif') repeat;
+  opacity: 0.1;
+  z-index: -1;
+  animation: backgroundMove 60s linear infinite;
+}
+
+@keyframes backgroundMove {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
