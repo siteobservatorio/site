@@ -175,7 +175,14 @@ footer {
   background-color: var(--primary-color);
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1px;.tabela-programacao thead th {
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
   font-weight: bold;
   font-size: 1rem;
 }
