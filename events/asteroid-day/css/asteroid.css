@@ -140,3 +140,39 @@ footer {
     flex-direction: column;
   }
 }
+
+.tabela-programacao {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.tabela-programacao thead {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.tabela-programacao th,
+.tabela-programacao td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.tabela-programacao tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 600px) {
+  .tabela-programacao {
+    font-size: 0.875rem;
+  }
+
+  .tabela-programacao th,
+  .tabela-programacao td {
+    padding: 8px;
+  }
+}
