@@ -286,14 +286,40 @@ footer::before {
 
 .btn {
   position: relative;
-  animation: pulse 2.5s infinite;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.9rem 2rem;
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(240, 165, 0, 0.5);
+  animation: pulse-glow 2.5s infinite ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(240,165,0,0.5); }
-  70% { box-shadow: 0 0 0 10px rgba(240,165,0,0); }
-  100% { box-shadow: 0 0 0 0 rgba(240,165,0,0); }
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
 }
+
+/* Animação de pulso e brilho */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(240, 165, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 200, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(240, 165, 0, 0.5);
+  }
+}
+
 
 body::before {
   content: "";
