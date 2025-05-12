@@ -1,4 +1,18 @@
 /* asteroid.css */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
 
 /* Variáveis de tema */
 :root {
@@ -88,10 +102,12 @@ html, body {
 
 /* Blocos de conteúdo */
 .content-block {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 3rem auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  width: 100%;
 }
+
 .content-block h2 {
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -143,6 +159,7 @@ footer {
 
 .tabela-programacao {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   margin-top: 2rem;
   font-size: 1rem;
