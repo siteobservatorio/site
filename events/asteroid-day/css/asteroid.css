@@ -1,6 +1,9 @@
 /* asteroid.css */
+
+/* Tipografia base adaptativa */
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
@@ -8,6 +11,7 @@ html {
     font-size: 17px;
   }
 }
+
 @media (min-width: 1024px) {
   html {
     font-size: 18px;
@@ -27,7 +31,7 @@ html {
   box-sizing: border-box;
 }
 
-html, body {
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -38,6 +42,7 @@ html, body {
   line-height: 1.6;
 }
 
+/* Navegação */
 .main-nav {
   display: flex;
   justify-content: center;
@@ -51,6 +56,7 @@ html, body {
   margin: 0 1rem;
   font-weight: bold;
 }
+
 .main-nav a:hover {
   color: var(--accent-color);
 }
@@ -68,24 +74,29 @@ html, body {
   color: #fff;
   overflow: hidden;
 }
+
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .hero-content {
   position: relative;
   z-index: 1;
   text-align: center;
 }
+
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 0.5rem;
 }
+
 .hero-content p {
   font-size: 1.25rem;
 }
+
 .btn {
   display: inline-block;
   margin-top: 1rem;
@@ -96,6 +107,7 @@ html, body {
   border-radius: 0.25rem;
   font-weight: bold;
 }
+
 .btn:hover {
   background: #d18f00;
 }
@@ -112,15 +124,18 @@ html, body {
   color: var(--primary-color);
   margin-bottom: 1rem;
 }
+
 .content-block ul {
   list-style: none;
   padding: 0;
 }
+
 .content-block li {
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
 }
+
 .content-block li::before {
   content: '•';
   color: var(--accent-color);
@@ -145,18 +160,7 @@ footer {
   color: #fff;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-  .hero-content h1 {
-    font-size: 2.25rem;
-  }
-  .hero {
-    height: auto;
-    padding: 2rem 1rem;
-    flex-direction: column;
-  }
-}
-
+/* Tabela de programação */
 .tabela-programacao {
   width: 100%;
   table-layout: auto;
@@ -164,7 +168,7 @@ footer {
   margin-top: 2rem;
   font-size: 1rem;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .tabela-programacao thead {
@@ -183,7 +187,18 @@ footer {
   background-color: #f9f9f9;
 }
 
+/* Responsividade */
 @media (max-width: 600px) {
+  .hero {
+    height: auto;
+    padding: 2rem 1rem;
+    flex-direction: column;
+  }
+
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+
   .tabela-programacao {
     font-size: 0.875rem;
   }
