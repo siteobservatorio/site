@@ -128,4 +128,25 @@
       height: 40vh;
     }
   }
+.hero {
+    position: relative;
+    background: url('../images/asteroid-hero.png') center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* sombra escura para facilitar leitura do texto */
+  }
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
   
