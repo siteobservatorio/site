@@ -269,20 +269,52 @@ footer::before {
 
 .cometa {
   position: fixed;
-  top: 10%;
-  left: -200px;
-  width: 120px;
+  width: 150px;
   height: 2px;
   background: linear-gradient(90deg, #fff, transparent);
   box-shadow: 0 0 8px #fff;
-  animation: cometaPassa 15s linear infinite;
   z-index: 1000;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
-@keyframes cometaPassa {
-  0% { transform: translateX(0) translateY(0); opacity: 1; }
-  100% { transform: translateX(120vw) translateY(-40vh); opacity: 0; }
+/* COMETA 1 – diagonal */
+.cometa1 {
+  top: 15%;
+  left: -200px;
+  animation: cometaDiagonal 12s linear infinite;
 }
+
+/* COMETA 2 – mais baixo e lento */
+.cometa2 {
+  top: 60%;
+  left: -300px;
+  animation: cometaDiagonalReverse 20s linear infinite 5s;
+}
+
+/* COMETA 3 – horizontal */
+.cometa3 {
+  top: 30%;
+  left: -200px;
+  animation: cometaHorizontal 18s linear infinite 10s;
+}
+
+/* Animações */
+@keyframes cometaDiagonal {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(120vw, -60vh); opacity: 0; }
+}
+
+@keyframes cometaDiagonalReverse {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(120vw, 30vh); opacity: 0; }
+}
+
+@keyframes cometaHorizontal {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(120vw); opacity: 0; }
+}
+
 
 .btn {
   position: relative;
