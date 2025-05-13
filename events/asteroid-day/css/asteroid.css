@@ -312,19 +312,38 @@ footer::before {
 
 /* Animações */
 @keyframes cometaDiagonal {
-  0% { transform: translate(0, 0); opacity: 1; }
-  100% { transform: translate(120vw, -60vh); opacity: 0; }
+  0% {
+    transform: scaleX(-1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(-1) translate(120vw, -60vh);
+    opacity: 0;
+  }
 }
 
 @keyframes cometaDiagonalReverse {
-  0% { transform: translate(0, 0); opacity: 1; }
-  100% { transform: translate(120vw, 30vh); opacity: 0; }
+  0% {
+    transform: scaleX(-1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(-1) translate(120vw, 30vh);
+    opacity: 0;
+  }
 }
 
 @keyframes cometaHorizontal {
-  0% { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(120vw); opacity: 0; }
+  0% {
+    transform: scaleX(-1) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(-1) translateX(120vw);
+    opacity: 0;
+  }
 }
+
 
 
 .btn {
