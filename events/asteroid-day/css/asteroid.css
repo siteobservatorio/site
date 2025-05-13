@@ -276,7 +276,7 @@ footer::before {
 
 .cometa {
   position: fixed;
-  transform: scaleX(-1);
+
   width: 150px;
   height: 2px;
   background: linear-gradient(90deg, #fff, transparent);
@@ -289,7 +289,7 @@ footer::before {
 /* COMETA 1 – diagonal */
 .cometa1 {
   top: 15%;
-  transform: scaleX(-1);
+
   left: -200px;
   animation: cometaDiagonal 12s linear infinite;
 }
@@ -297,7 +297,7 @@ footer::before {
 /* COMETA 2 – mais baixo e lento */
 .cometa2 {
   top: 60%;
-  transform: scaleX(-1);
+
   left: -300px;
   animation: cometaDiagonalReverse 20s linear infinite 5s;
 }
@@ -305,7 +305,7 @@ footer::before {
 /* COMETA 3 – horizontal */
 .cometa3 {
   top: 30%;
-  transform: scaleX(-1);
+
   left: -200px;
   animation: cometaHorizontal 18s linear infinite 10s;
 }
