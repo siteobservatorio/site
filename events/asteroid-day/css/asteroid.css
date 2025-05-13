@@ -376,3 +376,17 @@ body::before {
   from { background-position: 0 0; }
   to { background-position: 1000px 1000px; }
 }
+
+.detalhes-evento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  padding: 1rem 0;
+}
+
+.detalhes-evento .label {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-right: 0.25rem;
+}
