@@ -309,37 +309,73 @@ footer::before {
   left: -200px;
   animation: cometaHorizontal 18s linear infinite 10s;
 }
+/* COMETA 4 – da direita para esquerda (diagonal) */
+.cometa4 {
+  top: 25%;
+  right: -200px;
+  animation: cometaDiagonalEsquerda 14s linear infinite;
+}
 
-/* Animações */
-@keyframes cometaDiagonal {
+/* COMETA 5 – da direita para esquerda (horizontal) */
+.cometa5 {
+  top: 50%;
+  right: -200px;
+  animation: cometaHorizontalEsquerda 20s linear infinite 8s;
+}
+
+/* ANIMAÇÕES reversas */
+@keyframes cometaDiagonalEsquerda {
   0% {
     transform: scaleX(-1) translate(0, 0);
     opacity: 1;
   }
   100% {
-    transform: scaleX(-1) translate(120vw, -60vh);
+    transform: scaleX(-1) translate(-120vw, 60vh);
+    opacity: 0;
+  }
+}
+
+@keyframes cometaHorizontalEsquerda {
+  0% {
+    transform: scaleX(-1) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(-1) translateX(-120vw);
+    opacity: 0;
+  }
+}
+
+/* Animações */
+@keyframes cometaDiagonal {
+  0% {
+    transform: scaleX(1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1) translate(120vw, -60vh);
     opacity: 0;
   }
 }
 
 @keyframes cometaDiagonalReverse {
   0% {
-    transform: scaleX(-1) translate(0, 0);
+    transform: scaleX(1) translate(0, 0);
     opacity: 1;
   }
   100% {
-    transform: scaleX(-1) translate(120vw, 30vh);
+    transform: scaleX(1) translate(120vw, 30vh);
     opacity: 0;
   }
 }
 
 @keyframes cometaHorizontal {
   0% {
-    transform: scaleX(-1) translateX(0);
+    transform: scaleX(1) translateX(0);
     opacity: 1;
   }
   100% {
-    transform: scaleX(-1) translateX(120vw);
+    transform: scaleX(1) translateX(120vw);
     opacity: 0;
   }
 }
