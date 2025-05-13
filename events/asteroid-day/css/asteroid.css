@@ -173,20 +173,15 @@ footer {
 
 .tabela-programacao thead {
   background-color: var(--primary-color);
-  color: #fff;
+}
+
+.tabela-programacao thead th {
+  color: #fff !important;
   text-transform: uppercase;
-  letter-spacing: 1px;.tabela-programacao thead th {
-    color: #fff !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  
+  letter-spacing: 1px;
   font-weight: bold;
   font-size: 1rem;
 }
-
 
 .tabela-programacao th,
 .tabela-programacao td {
@@ -198,6 +193,18 @@ footer {
 .tabela-programacao tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+@media (max-width: 600px) {
+  .tabela-programacao {
+    font-size: 0.875rem;
+  }
+
+  .tabela-programacao th,
+  .tabela-programacao td {
+    padding: 8px;
+  }
+}
+
 
 /* Responsividade */
 @media (max-width: 600px) {
