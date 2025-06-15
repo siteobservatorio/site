@@ -3811,14 +3811,14 @@ img.u-pull-left {
   .modal-content {
     position: relative;
     margin: 5% auto;
-    max-width: 500px;
+    max-width: 720px; /* ou 800px, se quiser mais impacto */
     width: 90%;
     border-radius: 8px;
     overflow: hidden;
     background-color: transparent;
     padding: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  }
+  } 
   
   .modal-content img {
     width: 100%;
