@@ -527,18 +527,13 @@
   <script>
     function fecharModal() {
       document.getElementById("eventoModal").style.display = "none";
-      // Opcional: impedir que apareça de novo
-      localStorage.setItem("popupFechado", "sim");
     }
   
     window.onload = function () {
-      if (localStorage.getItem("popupFechado") !== "sim") {
-        document.getElementById("eventoModal").style.display = "block";
-      } else {
-        document.getElementById("eventoModal").style.display = "none";
-      }
+      document.getElementById("eventoModal").style.display = "block";
     };
   </script>
+  
   
 </body>
 </html>
