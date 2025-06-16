@@ -503,8 +503,14 @@ body::before {
 }
 
 .logos-enfileirados {
-  padding: 2rem 0;
+  padding: 20px 0;
+  margin: 0;
   background-color: #f2f2f2;
+}
+
+.logos-enfileirados .container {
+  padding: 0;
+  margin: 0 auto;
 }
 
 .logos-container {
@@ -538,4 +544,9 @@ body::before {
   margin-bottom: 1.5rem;
   font-weight: 600;
   color: #222;
+}
+section.logos-enfileirados {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  background-color: #f5f5f5; /* mantém o cinza, mas sem exagero */
 }
