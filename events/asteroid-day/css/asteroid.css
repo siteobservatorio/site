@@ -457,3 +457,47 @@ body::before {
   color: var(--accent-color);
   margin-right: 0.25rem;
 }
+
+#asteroid-day {
+  padding: 40px 20px;
+  background: #fdfdfd;
+  color: #222;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+#asteroid-day h2, #asteroid-day h3 {
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+#asteroid-day ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#asteroid-day ul li::before {
+  content: "📌 ";
+}
+
+.inscricao-urgente {
+  background: #fffbe6;
+  border-left: 4px solid #ffc107;
+  padding: 15px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (max-width: 768px) {
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+}
