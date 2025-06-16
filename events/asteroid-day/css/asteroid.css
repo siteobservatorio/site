@@ -151,6 +151,17 @@ body {
   display: block;
   min-height: 600px;
 }
+section#inscricao {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border: none;
+}
 
 /* Rodapé */
 footer {
