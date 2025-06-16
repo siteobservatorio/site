@@ -532,3 +532,10 @@ body::before {
 .logos-container img:hover {
   transform: scale(1.05);
 }
+.apoio-titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
