@@ -561,3 +561,52 @@ section.logos-enfileirados {
   padding-bottom: 10px;
   background-color: #f5f5f5; /* mantém o cinza, mas sem exagero */
 }
+
+/* ========================
+   Asteroid Day – CSS Revisado
+   Atualizado em Junho/2025
+   ======================== */
+
+/* Correção de espaçamento acima das logos */
+section.logos-enfileirados {
+  background-color: #f4f4f4;
+  padding: 10px 0 20px;
+  text-align: center;
+}
+
+/* Título de apoio com margem reduzida */
+.apoio-titulo {
+  font-size: 1.4rem;
+  margin: 0 0 1rem;
+}
+
+/* Imagens de logos uniformizadas */
+.logos-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logos-container img {
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Ajuste do espaçamento do iframe */
+#inscricao iframe {
+  display: block;
+  margin: 0 auto;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Container genérico para seções com melhor espaçamento lateral */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
