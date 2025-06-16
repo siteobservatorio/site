@@ -3840,3 +3840,33 @@ img.u-pull-left {
     color: #f00;
   }
   
+  #asteroid-day {
+    padding: 40px 20px;
+    background: #fdfdfd;
+    color: #222;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  #asteroid-day h2, #asteroid-day h3 {
+    color: #1a1a1a;
+    margin-bottom: 15px;
+  }
+  
+  #asteroid-day ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #asteroid-day ul li::before {
+    content: "📌 ";
+  }
+  
+  .inscricao-urgente {
+    background: #fffbe6;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+  }
+  
