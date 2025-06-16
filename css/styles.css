@@ -3839,7 +3839,7 @@ img.u-pull-left {
   .close:hover {
     color: #f00;
   }
-  
+
   #asteroid-day {
     padding: 40px 20px;
     background: #fdfdfd;
@@ -3870,3 +3870,16 @@ img.u-pull-left {
     font-weight: bold;
   }
   
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
