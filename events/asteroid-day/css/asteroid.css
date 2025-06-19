@@ -83,10 +83,14 @@ body {
 }
 
 .hero-content {
-  margin-top: 120px;
   position: relative;
   z-index: 1;
+  text-align: center;
+  margin-top: 100px; /* ou maior se estiver colidindo com o contador */
+  max-width: 900px;
+  margin: 100px auto 0 auto;
 }
+
 
 
 .hero-content h1 {
@@ -715,6 +719,9 @@ section.logos-enfileirados {
   }
 
   .hero-content {
-    margin-top: 100px; /* empurra o título para baixo */
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 100px; /* ou maior se estiver colidindo com o contador */
   }
 }
