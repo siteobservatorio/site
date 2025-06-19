@@ -763,3 +763,6 @@ section.logos-enfileirados {
     margin-top: 120px;
   }
 }
+[data-aos] {
+  will-change: transform, opacity;
+}

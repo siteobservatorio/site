@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/styles.css" />
   <!-- Estilos específicos do evento -->
   <link rel="stylesheet" href="css/asteroid.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <div class="cometa cometa1"></div>
@@ -43,10 +44,10 @@
       
 
 <!-- Seção: O que é o Asteroid Day -->
-<section id="asteroid-day-intro">
+<section id="asteroid-day-intro" data-aos="fade-up">
   <div class="container">
-    <h2>Uma noite mágica te espera no Asteroid Day 2025</h2>
-    <p>
+    <h2 data-aos="zoom-in">Uma noite mágica te espera no Asteroid Day 2025</h2>
+    <p data-aos="fade-up">
       Já imaginou vivenciar uma noite repleta de descobertas sob um céu estrelado?<br>
       O <strong>Asteroid Day 2025</strong> chega ao Observatório Estrela do Sul em Sarandi com uma programação imperdível que une 
       <strong>ciência, natureza e experiência prática</strong>.
@@ -64,7 +65,7 @@
 </section>
 
 <!-- Seção: Para quem é o evento -->
-<section id="asteroid-day-publico">
+<section id="asteroid-day-publico" data-aos="fade-right">
   <div class="container">
     <h3>Uma experiência para todas as idades</h3>
     <p>Seja você um entusiasta do espaço, estudante, família ou visitante curioso, todos são bem-vindos! Nosso evento foi pensado para encantar pessoas de todas as idades, em um ambiente acolhedor, educativo e divertido.</p>
@@ -72,7 +73,7 @@
 </section>
 
 <!-- Seção: Detalhes do Evento -->
-<section id="asteroid-day-detalhes">
+<section id="asteroid-day-detalhes" data-aos="flip-left">
   <div class="container">
     <h3>Detalhes do Evento</h3>
     <ul>
@@ -91,7 +92,7 @@
 
 
     <!-- Programação -->
-    <section id="programacao" class="content-block">
+    <section id="programacao" class="content-block"  data-aos="fade-up">
         <h2>Programação</h2>
         <table class="tabela-programacao">
           <thead>
@@ -143,7 +144,7 @@
       
 
     <!-- Inscrição -->
-    <section id="inscricao" class="content-block">
+    <section id="inscricao" class="content-block" data-aos="zoom-in-up">
       <h2>Inscrição</h2>
       <p>Para participar, preencha o formulário abaixo:</p>
       <!-- Substitua o src pelo link de incorporação do seu Google Form -->
@@ -186,5 +187,12 @@
   <!-- scripts gerais e do evento -->
   <script src="/js/main.js"></script>
   <script src="js/asteroid.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // duração da animação
+    once: true,     // anima apenas na primeira vez que entra em tela
+  });
+</script>
 </body>
 </html>
