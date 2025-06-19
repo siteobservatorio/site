@@ -651,3 +651,38 @@ section.logos-enfileirados {
   color: #aaa;
   margin-top: 8px;
 }
+#contador {
+  background-color: #0d0d0d;
+  padding: 40px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+#contador h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#timer div {
+  background: #222;
+  padding: 12px 16px;
+  border-radius: 8px;
+  min-width: 60px;
+}
+
+#timer span {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+#timer small {
+  font-size: 0.75rem;
+  color: #ccc;
+}
