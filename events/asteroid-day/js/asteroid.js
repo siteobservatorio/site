@@ -23,4 +23,24 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       }, 700);
     });
   }
-  
+
+function atualizarContador() {
+  const evento = new Date("2025-06-28T15:00:00");
+  const agora = new Date();
+  const tempoRestante = evento - agora;
+
+  if (tempoRestante <= 0) return;
+
+  const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((tempoRestante / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((tempoRestante / (1000 * 60)) % 60);
+  const segundos = Math.floor((tempoRestante / 1000) % 60);
+
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = horas;
+  document.getElementById("minutos").textContent = minutos;
+  document.getElementById("segundos").textContent = segundos;
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador(); // executa na primeira carga

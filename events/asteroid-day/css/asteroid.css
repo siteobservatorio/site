@@ -620,3 +620,34 @@ section.logos-enfileirados {
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+.contador-section {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  font-family: monospace;
+  font-size: 2rem;
+}
+
+#timer div {
+  background: #222;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+#timer small {
+  display: block;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 8px;
+}
