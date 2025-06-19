@@ -766,3 +766,23 @@ section.logos-enfileirados {
 [data-aos] {
   will-change: transform, opacity;
 }
+.logos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* padrão responsivo */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* DESKTOP: força linha única e diminui as logos */
+@media (min-width: 1024px) {
+  .logos-container {
+    flex-wrap: nowrap; /* força tudo numa linha */
+  }
+
+  .logos-container img {
+    max-width: 100px;
+    height: auto;
+  }
+}
