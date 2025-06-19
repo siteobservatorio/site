@@ -83,10 +83,11 @@ body {
 }
 
 .hero-content {
+  margin-top: 120px;
   position: relative;
   z-index: 1;
-  text-align: center;
 }
+
 
 .hero-content h1 {
   font-size: 3rem;
@@ -678,4 +679,42 @@ section.logos-enfileirados {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+}
+#contador {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+#timer div {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 45px;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  font-size: 14px;
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px) {
+  #contador {
+    top: 60px;
+    gap: 6px;
+  }
+
+  #timer div {
+    padding: 6px;
+    min-width: 40px;
+    font-size: 13px;
+  }
+
+  .hero-content {
+    margin-top: 100px; /* empurra o título para baixo */
+  }
 }
