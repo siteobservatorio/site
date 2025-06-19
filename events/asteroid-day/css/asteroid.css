@@ -725,3 +725,41 @@ section.logos-enfileirados {
   margin-top: 100px; /* ou maior se estiver colidindo com o contador */
   }
 }
+#contador {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap; /* impede quebra de linha */
+}
+
+#timer div {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 55px;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  font-size: 14px;
+}
+
+/* Responsivo para celular */
+@media (max-width: 480px) {
+  #timer div {
+    min-width: 45px;
+    padding: 6px 4px;
+    font-size: 12px;
+  }
+
+  .hero-content {
+    margin-top: 120px;
+  }
+}
