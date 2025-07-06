@@ -1,51 +1,94 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" class="js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site em manutenção</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f7f7f7;
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: #333;
-      text-align: center;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OES - Observatório Estrela do Sul - Sarandi/PR - Brasil</title>
+    <meta name="description" content="Observatório Estrela do Sul em Sarandi/PR. Agende sua visita e explore o universo conosco!">
+    <meta name="keywords" content="observatório, astronomia, Sarandi, Maringá, estrelas, telescópio, natureza, camping">
 
-    .container {
-      max-width: 400px;
-      padding: 20px;
-    }
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61684J2BLF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-61684J2BLF');
+    </script>
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
 
-    p {
-      font-size: 1em;
-      color: #666;
-    }
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.css" />
 
-    small {
-      display: block;
-      margin-top: 2em;
-      font-size: 0.8em;
-      color: #aaa;
-    }
-  </style>
+    <style>
+        .maintenance-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: linear-gradient(#000000, #0a0a23);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .maintenance-wrapper h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .maintenance-wrapper p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .btn-zap {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-zap:hover {
+            background-color: #128C7E;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>🚧 Site em manutenção</h1>
-    <p>Estamos atualizando o conteúdo.<br>Volte em breve!</p>
-    <small>&copy; 2025 Observatório Estrela do Sul</small>
-  </div>
+<body id="top">
+    <div class="maintenance-wrapper">
+        <h1>🚧 Site em manutenção</h1>
+        <p>Estamos atualizando o nosso site para oferecer uma experiência ainda melhor.<br>
+        Enquanto isso, você ainda pode agendar sua visita normalmente pelo WhatsApp:</p>
+        <a href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de agendar uma visita!" class="btn-zap" target="_blank">📅 Agendar pelo WhatsApp</a>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #ccc;">© 2025 Observatório Estrela do Sul - Sarandi/PR</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": { "background": "#000" },
+          "button": { "background": "#f1d600" }
+        },
+        "content": {
+          "message": "Este site utiliza cookies para melhorar a experiência do usuário.",
+          "dismiss": "Entendi!",
+          "link": "Saiba mais",
+          "href": "/politica-de-privacidade.html"
+        }
+      });
+    });
+    </script>
 </body>
 </html>
