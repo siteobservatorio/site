@@ -223,13 +223,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // ===== Adicionar efeito parallax suave no hero =====
+  // ===== Adicionar efeito parallax aprimorado no hero =====
   const hero = document.querySelector('.hero');
+  const heroText = document.querySelector('.hero-text');
+  const heroHighlight = document.querySelector('.hero-highlight');
+  
   if (hero) {
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
-      const parallaxSpeed = 0.5;
+      const heroHeight = hero.offsetHeight;
+      const parallaxSpeed = 0.7;
+      
       hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+      
+      const opacity = Math.max(0, 1 - (scrolled / (heroHeight * 0.6)));
+      if (heroText) heroText.style.opacity = opacity;
+      if (heroHighlight) heroHighlight.style.opacity = opacity;
+      
+      if (scrolled > heroHeight * 0.3) {
+        hero.style.opacity = Math.max(0, 1 - ((scrolled - heroHeight * 0.3) / (heroHeight * 0.4)));
+      }
     });
   }
   

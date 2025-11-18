@@ -238,9 +238,27 @@ section {
   min-height: calc(100vh - 100px);
   display: flex;
   align-items: center;
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
@@ -542,6 +560,34 @@ section {
   font-size: 0.875rem;
   color: var(--color-gray-400);
   font-style: italic;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: var(--color-white);
+  border-radius: 50%;
+  transition: all var(--transition-base);
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  pointer-events: none;
+}
+
+.card-experience:hover .card-btn-whatsapp {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.card-btn-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
 }
 
 /* Feature Grid */
