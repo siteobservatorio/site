@@ -1,8 +1,4 @@
-/* ===== Imports DEVEM ficar no topo ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
-
-/* ===== Reset CSS básico ===== */
+/* Reset CSS básico */
 *,
 *::before,
 *::after {
@@ -47,18 +43,5 @@ button {
   font-family: inherit;
 }
 
-/* Garantir que os ícones do Font Awesome começam em tamanho padrão */
-.fa,
-.fab,
-.fas,
-.far,
-.fal,
-.fad,
-.fa-solid,
-.fa-regular,
-.fa-light,
-.fa-duotone,
-.fa-brands {
-  font-size: 1rem;
-  line-height: 1;
-}
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
