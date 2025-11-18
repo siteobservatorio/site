@@ -486,6 +486,9 @@ section {
 .hero-image {
   position: relative;
   height: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-card {
@@ -511,6 +514,9 @@ section {
   width: 100%;
   height: auto;
   display: block;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-main-image::after {
