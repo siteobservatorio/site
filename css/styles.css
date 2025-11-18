@@ -712,6 +712,7 @@ section {
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
   align-items: start;
+  color: var(--color-white);
 }
 
 .location-text {
@@ -875,6 +876,7 @@ section {
   .location-layout,
   .contact-layout {
     grid-template-columns: 1fr;
+    color: var(--color-white);
   }
   
   .nav-toggle {
