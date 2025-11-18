@@ -182,6 +182,96 @@ section {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.25);
 }
+/* Header alinhado com o HTML atual (header-inner, logo-area etc) */
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: 0.9rem 0;
+}
+
+/* Área da logo: imagem + textos */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* AQUI é onde a logo encolhe */
+.logo-img {
+  width: 80px;      /* se ainda ficar grande, testa 72 ou 64 */
+  height: auto;
+  display: block;
+  border-radius: 50%;
+}
+
+/* Textos ao lado da logo */
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--color-gray-100);
+}
+
+.logo-text span {
+  font-size: 0.75rem;
+  color: var(--color-gray-400);
+}
+
+/* Menu principal baseado na sua estrutura: <nav class="main-nav"><ul class="nav-list"> */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.main-nav .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+/* Links do menu, reaproveitando o visual de .nav-link */
+.main-nav .nav-list a {
+  font-size: 0.9rem;
+  color: var(--color-gray-300);
+  padding: 0.35rem 0;
+  position: relative;
+}
+
+.main-nav .nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.15rem;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #a855f7, #22c55e);
+  border-radius: 999px;
+  box-shadow: 0 0 15px rgba(147, 197, 253, 0.7);
+  transform: translateX(-50%);
+  transition: width var(--transition-fast);
+}
+
+.main-nav .nav-list a:hover::after {
+  width: 85%;
+}
+
 
 .site-header-inner {
   display: flex;
