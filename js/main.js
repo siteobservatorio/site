@@ -1,5 +1,5 @@
 // ===== Observatório Estrela do Sul - JavaScript Principal =====
-
+const fadeOutStyle = 'some-value';
 // ===== Animação de fade-out global para o modal =====
 const fadeOutStyle = document.createElement('style');
 fadeOutStyle.textContent = `
