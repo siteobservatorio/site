@@ -1,168 +1,504 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="js">
+<html lang="pt-br" class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OES - Observatório Estrela do Sul - Sarandi/PR - Brasil</title>
-    <meta name="description" content="Observatório Estrela do Sul em Sarandi/PR. Agende sua visita e explore o universo conosco!">
-    <meta name="keywords" content="observatório, astronomia, Sarandi, Maringá, estrelas, telescópio, natureza, camping">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61684J2BLF"></script>
-    <script>
+  <title>OES - Observatório Estrela do Sul - Sarandi/PR - Brasil</title>
+
+  <meta name="description" content="Observatório Estrela do Sul em Sarandi/PR. Agende sua visita e explore o universo conosco!">
+  <meta name="keywords" content="observatório, astronomia, Sarandi, Maringá, estrelas, telescópio, natureza, camping">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-61684J2BLF"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-61684J2BLF');
-    </script>
+  </script>
 
-    <script>
-        document.documentElement.classList.remove('no-js');
-        document.documentElement.classList.add('js');
-    </script>
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
 
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.css" />
+  <!-- CSS principal do site (vamos criar depois) -->
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/styles.css">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: black;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            color: white;
-            text-align: center;
-        }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
 
-        .maintenance-wrapper {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            margin-top: 20px;
-            font-size: 3em;
-            color: #ffff00;
-            text-shadow: 1px 1px 3px #fff;
-        }
-
-        .maintenance-wrapper p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .btn-zap {
-            background-color: #25D366;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-zap:hover {
-            background-color: #128C7E;
-        }
-
-        .logo {
-            width: 140px;
-            margin: 0 auto 20px;
-            display: block;
-        }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        .msg {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: #ccc;
-        }
-    </style>
+  <!-- Cookie Consent (lib externa) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.css">
 </head>
 <body id="top">
-    <canvas id="starfield"></canvas>
-    <div class="maintenance-wrapper">
-        <img src="images/logo-oes.png" alt="Logo Observatório" class="logo" />
-        <h1>🚧 Site em manutenção 🚧</h1>
-        <p>Estamos atualizando o nosso site para oferecer uma experiência ainda melhor.<br>
-        Enquanto isso, você ainda pode agendar sua visita normalmente pelo WhatsApp:</p>
-        <a href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de agendar uma visita!" class="btn-zap" target="_blank">📅 Agendar pelo WhatsApp</a>
-        <p style="margin-top: 2rem; font-size: 0.9rem; color: #ccc;">© 2025 Observatório Estrela do Sul - Sarandi/PR</p>
-    </div>
+  <!-- Fundo de estrelas em canvas -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.js"></script>
-    <script>
+  <!-- Site inteiro fica dentro desta wrapper -->
+  <div class="site-wrapper">
+
+    <!-- Cabeçalho fixo -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="logo-area">
+          <a href="#inicio" class="logo-link">
+            <img src="images/logo-oes.png" alt="Logo Observatório Estrela do Sul" class="logo-img">
+          </a>
+          <div class="logo-text">
+            <strong>Observatório Estrela do Sul</strong>
+            <span>Sarandi PR Brasil</span>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Navegação principal">
+          <button class="nav-toggle" aria-label="Abrir menu">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#experiencias">Experiências</a></li>
+            <li><a href="#estrutura">Estrutura</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#localizacao">Localização</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero / Início -->
+    <main id="inicio" class="hero">
+      <div class="container hero-inner">
+        <section class="hero-text" aria-labelledby="hero-title">
+          <p class="hero-tag">Astronomia, natureza e camping em Sarandi PR</p>
+
+          <h1 id="hero-title">
+            Observe o céu mais estrelado da região em uma experiência guiada
+          </h1>
+
+          <p class="hero-subtitle">
+            O Observatório Estrela do Sul oferece sessões de observação com telescópios,
+            vivências educativas e experiências em meio à natureza, com opção de camping
+            para quem quer aproveitar o céu escuro por mais tempo.
+          </p>
+
+          <div class="hero-badges">
+            <span class="badge">Telescópios guiados</span>
+            <span class="badge">Atividades para todas as idades</span>
+            <span class="badge">Sarandi PR Brasil</span>
+          </div>
+
+          <div class="hero-ctas">
+            <a href="#experiencias" class="btn btn-primary">
+              Ver experiências disponíveis
+            </a>
+
+            <a class="btn btn-outline"
+               href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de agendar uma visita!"
+               target="_blank" rel="noopener">
+              Agendar pelo WhatsApp
+            </a>
+          </div>
+
+          <p class="hero-note">
+            Os agendamentos são feitos exclusivamente pelo WhatsApp. Combine data, horário
+            e número de pessoas antes de se deslocar até o observatório.
+          </p>
+        </section>
+
+        <aside class="hero-highlight" aria-label="Resumo da experiência">
+          <div class="hero-highlight-card">
+            <img src="images/foto-telescopio.jpg"
+                 alt="Pessoa observando o céu com telescópio"
+                 class="hero-highlight-img">
+
+            <h2 class="hero-highlight-title">Noite de observação sob um céu escuro</h2>
+
+            <p class="hero-highlight-text">
+              Conheça constelações, planetas e objetos de céu profundo com a orientação
+              da equipe do Observatório Estrela do Sul e equipamentos adequados.
+            </p>
+
+            <ul class="hero-highlight-list">
+              <li>Sessões em datas definidas por agenda e condições do tempo</li>
+              <li>Atendimento a famílias, casais, grupos e escolas</li>
+              <li>Possibilidade de combinar a experiência com área de camping</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Experiências -->
+    <section id="experiencias" class="section section-experiences">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Experiências no Observatório Estrela do Sul</h2>
+          <p>
+            As atividades podem variar conforme agenda, clima e época do ano. Use estas descrições
+            como base para explicar os formatos que você oferece e ajustar detalhes de duração e valores.
+          </p>
+        </header>
+
+        <div class="cards-grid">
+          <!-- Sessão de observação -->
+          <article class="card-experience">
+            <img src="images/experiencia-sessao-observacao.jpg"
+                 alt="Sessão de observação do céu noturno"
+                 class="card-experience-img">
+            <div class="card-experience-body">
+              <h3>Sessão de observação do céu</h3>
+              <p>
+                Encontro noturno com explicações de astronomia, identificação de constelações
+                e observação de Lua, planetas e outros objetos pelo telescópio.
+              </p>
+              <p class="card-experience-meta">
+                Duração aproximada: 2 horas · Horário noturno · Indicado para famílias,
+                casais e grupos de amigos.
+              </p>
+            </div>
+          </article>
+
+          <!-- Camping -->
+          <article class="card-experience">
+            <img src="images/experiencia-camping.jpg"
+                 alt="Camping sob céu estrelado"
+                 class="card-experience-img">
+            <div class="card-experience-body">
+              <h3>Camping com céu estrelado</h3>
+              <p>
+                Área de camping em ambiente de natureza, com a possibilidade de combinar
+                observação do céu e vivências ligadas à astronomia ao ar livre.
+              </p>
+              <p class="card-experience-meta">
+                Necessário agendamento prévio · Vagas limitadas · Ideal para grupos pequenos
+                e entusiastas da natureza.
+              </p>
+            </div>
+          </article>
+
+          <!-- Visitas educativas -->
+          <article class="card-experience">
+            <img src="images/experiencia-escolar.jpg"
+                 alt="Grupo escolar em atividade de astronomia"
+                 class="card-experience-img">
+            <div class="card-experience-body">
+              <h3>Visitas educativas e grupos</h3>
+              <p>
+                Atividades pensadas para escolas, projetos educativos e grupos organizados,
+                com conteúdo adaptado à faixa etária e alinhado com o currículo de ciências.
+              </p>
+              <p class="card-experience-meta">
+                Atendimentos em datas combinadas · Conteúdo adaptável para ensino fundamental,
+                médio e projetos especiais.
+              </p>
+            </div>
+          </article>
+
+          <!-- Eventos especiais / datas temáticas -->
+          <article class="card-experience">
+            <img src="images/experiencia-eventos.jpg"
+                 alt="Evento especial de astronomia com público"
+                 class="card-experience-img">
+            <div class="card-experience-body">
+              <h3>Eventos especiais de astronomia</h3>
+              <p>
+                Programação especial em datas astronômicas marcantes, como chuvas de meteoros,
+                eclipses e ações temáticas, aberta ao público mediante inscrição.
+              </p>
+              <p class="card-experience-meta">
+                Agenda variável · Divulgada com antecedência · Vagas limitadas por evento.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <a class="btn btn-primary"
+             href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de informações sobre as experiências disponíveis.">
+            Consultar datas e valores no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estrutura -->
+    <section id="estrutura" class="section section-structure">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Estrutura do observatório e da área de natureza</h2>
+          <p>
+            Apresente os principais pontos da estrutura física para que o visitante saiba o que encontrar ao chegar.
+          </p>
+        </header>
+
+        <div class="feature-grid">
+          <article class="feature-item">
+            <h3>Área de observação</h3>
+            <p>
+              Espaço preparado para observação do céu, com montagem de telescópios e orientação para que
+              o público aproveite a experiência com conforto e segurança.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Camping e trilhas</h3>
+            <p>
+              Área destinada à montagem de barracas e contato com a natureza. Podem existir trilhas e percursos
+              simples para quem chega mais cedo ou pernoita no local.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Infraestrutura básica</h3>
+            <p>
+              Estrutura de apoio com itens como sanitários, pontos de apoio e estacionamento. Detalhe aqui
+              o que já está disponível e o que está em implantação.
+            </p>
+          </article>
+
+          <article class="feature-item">
+            <h3>Atendimento orientado</h3>
+            <p>
+              Acompanhamento da equipe do observatório desde o agendamento até a realização da atividade,
+              com foco em segurança, acolhimento e educação científica.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona o agendamento -->
+    <section id="como-funciona" class="section section-how-it-works">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Como funciona o agendamento</h2>
+          <p>
+            Deixe o passo a passo claro para o visitante entender exatamente como participar das atividades.
+          </p>
+        </header>
+
+        <div class="steps-grid">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Escolha a experiência</h3>
+            <p>
+              Veja as opções de sessão de observação, camping ou visitas educativas
+              e defina o formato que mais combina com o seu grupo.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Fale pelo WhatsApp</h3>
+            <p>
+              Envie uma mensagem informando data desejada, número de pessoas e se há crianças,
+              grupos escolares ou necessidades específicas.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Confirme sua reserva</h3>
+            <p>
+              Após o retorno com disponibilidade e valores, siga as orientações para confirmar
+              o agendamento. Em caso de mau tempo, a equipe orienta sobre remarcações.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="section section-gallery">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Um pouco da experiência</h2>
+          <p>
+            Substitua as imagens de exemplo por fotos reais do Observatório Estrela do Sul,
+            área de natureza e atividades com o público.
+          </p>
+        </header>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="images/galeria-1.jpg" alt="Vista do céu estrelado no observatório">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/galeria-2.jpg" alt="Pessoa observando o céu com telescópio">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/galeria-3.jpg" alt="Grupo reunido em noite de observação">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/galeria-4.jpg" alt="Área externa do observatório à noite">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/galeria-5.jpg" alt="Crianças em atividade educativa de astronomia">
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/galeria-6.jpg" alt="Barracas de camping sob o céu noturno">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Localização -->
+    <section id="localizacao" class="section section-location">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Localização e orientações</h2>
+          <p>
+            Explique como chegar até o observatório, pontos de referência e informações importantes
+            sobre acesso, sinal de celular e condições da estrada.
+          </p>
+        </header>
+
+        <div class="location-layout">
+               <div class="location-info">
+            <h3>Observatório Estrela do Sul</h3>
+            <p><strong>Endereço:</strong> Estrada Mará, km 05 - Gleba Ribeirão Aquidabã<br>
+            Sarandi - PR, CEP: 87112-390</p>
+
+            <h4>Como chegar</h4>
+            <p>
+              O Observatório está localizado a aproximadamente 10 km de Maringá, pela Estrada Mará. 
+              Saindo de Maringá, siga em direção a Sarandi pela Avenida Colombo. Ao chegar em Sarandi, 
+              pegue a Estrada Mará e siga até o km 05. O observatório fica na Gleba Ribeirão Aquidabã. 
+              Há trechos de estrada de terra, recomenda-se atenção especialmente em dias de chuva.
+            </p>
+
+            <h4>Orientações importantes</h4>
+            <p>
+              <strong>Atendimentos somente com agendamento prévio pelo WhatsApp.</strong> Em noites nubladas ou chuvosas, 
+              as atividades de observação podem ser remarcadas. Recomenda-se levar agasalho (as noites são frias), 
+              calçado fechado e confortável, lanterna e repelente. O local possui estacionamento e área para camping.
+            </p>
+          </div>
+
+          <div class="location-map">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.5!2d-51.9!3d-23.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDI0JzAwLjAiUyA1McKwNTQnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+              width="100%" 
+              height="450" 
+              style="border:0; border-radius: 1rem;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Localização do Observatório Estrela do Sul">
+            </iframe>
+            <p style="margin-top: 1rem; text-align: center; font-size: 0.875rem; color: var(--color-gray-400);">
+              <a href="https://www.google.com/maps/search/Observat%C3%B3rio+Estrela+do+Sul+Sarandi" 
+                 target="_blank" 
+                 rel="noopener" 
+                 style="color: var(--color-primary); text-decoration: underline;">
+                Abrir no Google Maps
+              </a>
+            </p>
+          </div>   </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="section section-contact">
+      <div class="container section-inner">
+        <header class="section-header">
+          <h2>Contato e agendamento</h2>
+          <p>
+            Centralize os canais de contato para dúvidas, agendamentos e informações sobre programação.
+          </p>
+        </header>
+
+        <div class="contact-layout">
+          <div class="contact-info-block">
+            <p><strong>WhatsApp:</strong> (44) 99176-2171</p>
+            <p><strong>Horário de funcionamento:</strong> Finais de semana e feriados (mediante agendamento)</p>
+            <p><strong>Atendimento:</strong> Consulte disponibilidade e horários pelo WhatsApp</p>
+
+            <a class="btn btn-whatsapp"
+               href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de agendar uma visita!"
+               target="_blank" rel="noopener">
+              Agendar visita pelo WhatsApp
+            </a>
+
+            <p class="contact-note">
+              Na mensagem inicial, informe data desejada, número de pessoas,
+              se há crianças ou grupo escolar e o tipo de experiência que você procura.
+            </p>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>Informações ao visitante</h3>
+            <p>
+              As atividades dependem das condições do tempo. Em caso de nuvens, chuva ou neblina intensa,
+              a equipe pode orientar sobre remarcação. Respeite as orientações de segurança em áreas de natureza
+              e ajude a manter o ambiente limpo.
+            </p>
+            <p>
+              Se você faz parte de escola, projeto social ou grupo organizado, descreva na mensagem para que
+              possamos sugerir o formato mais adequado de visita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p>© <span id="ano-atual"></span> Observatório Estrela do Sul - Sarandi/PR. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-right">
+          <a href="politica-de-privacidade.html">Política de privacidade</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a class="whatsapp-float"
+     href="https://api.whatsapp.com/send?phone=5544991762171&text=Olá, eu vim pelo site e gostaria de agendar uma visita!"
+     target="_blank" rel="noopener">
+    Agendar visita
+  </a>
+
+  <!-- Cookie Consent -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent/3.1.0/cookieconsent.min.js"></script>
+  <script>
     window.addEventListener("load", function(){
       window.cookieconsent.initialise({
-        "palette": {
-          "popup": { "background": "#000" },
-          "button": { "background": "#f1d600" }
+        palette: {
+          popup: { background: "#000" },
+          button: { background: "#f1d600" }
         },
-        "content": {
-          "message": "Este site utiliza cookies para melhorar a experiência do usuário.",
-          "dismiss": "Entendi!",
-          "link": "Saiba mais",
-          "href": "/politica-de-privacidade.html"
+        content: {
+          message: "Este site utiliza cookies para melhorar a experiência do usuário.",
+          dismiss: "Entendi!",
+          link: "Saiba mais",
+          href: "/politica-de-privacidade.html"
         }
       });
     });
-    </script>
-    <script>
-    const canvas = document.getElementById("starfield");
-    const ctx = canvas.getContext("2d");
+  </script>
 
-    let stars = [];
+  <!-- JS principal (vamos criar depois) -->
+  <script src="js/main.js"></script>
+  <!-- JS do starfield (vamos criar depois) -->
+  <script src="js/starfield.js"></script>
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      stars = Array(200).fill().map(() => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5,
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5
-      }));
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
-      stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fill();
-        star.x += star.dx;
-        star.y += star.dy;
-
-        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
-        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
-      });
-      requestAnimationFrame(drawStars);
-    }
-
-    window.addEventListener("resize", resize);
-    resize();
-    drawStars();
-    </script>
+  <script>
+    // Atualiza ano no rodapé sem depender de outro arquivo
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

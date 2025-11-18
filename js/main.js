@@ -1,512 +1,323 @@
-/* ===================================================================
- *  Khronos 2.0.0 - Main JS
- *
- *
- * ------------------------------------------------------------------- */
+// ===== Observatório Estrela do Sul - JavaScript Principal =====
 
-(function(html) {
-
-    'use strict';
-
-    const cfg = {
-
-        // Countdown Timer Final Date
-        finalDate : 'November 15, 2021 00:00:00',
-        // MailChimp URL
-        mailChimpURL    : ''
-        //mailChimpURL : 'https://facebook.us1.list-manage.com/subscribe/post?u=1abf75f6981256963a47d197a&amp;id=37c6d8f4d6' 
-
-    };
-
-
-   /* Preloader
-    * -------------------------------------------------- */
-    const ssPreloader = function() {
-
-        const body = document.querySelector('body');
-        const preloader = document.querySelector('#preloader');
-        const info = document.querySelector('.s-info');
-
-        if (!(preloader && info)) return;
-
-        html.classList.add('ss-preload');
-
-        window.addEventListener('load', function() {
-
-            html.classList.remove('ss-preload');
-            html.classList.add('ss-loaded');
-
-            // page scroll position to top
-            preloader.addEventListener('transitionstart', function gotoTop(e) {
-                if (e.target.matches('#preloader')) {
-                    window.scrollTo(0, 0);
-                    preloader.removeEventListener(e.type, gotoTop);
-                }
-            });
-
-            preloader.addEventListener('transitionend', function afterTransition(e) {
-                if (e.target.matches('#preloader'))  {
-                    body.classList.add('ss-show');
-                    e.target.style.display = 'none';
-                    preloader.removeEventListener(e.type, afterTransition);
-                }
-            });
-
-        });
-
-        window.addEventListener('beforeunload' , function() {
-            body.classList.remove('ss-show');
-        });
-    };
-
-
-   /* Countdown Timer
-    * ------------------------------------------------------ */
-    const ssCountdown = function () {
-
-        const finalDate = new Date(cfg.finalDate).getTime();
-        const daysSpan = document.querySelector('.counter .ss-days');
-        const hoursSpan = document.querySelector('.counter .ss-hours');
-        const minutesSpan = document.querySelector('.counter .ss-minutes');
-        const secondsSpan = document.querySelector('.counter .ss-seconds');
-        let timeInterval;
-
-        if (!(daysSpan && hoursSpan && minutesSpan && secondsSpan)) return;
-
-        function timer() {
-
-            const now = new Date().getTime();
-            let diff = finalDate - now;
-
-            if (diff <= 0) {
-                if (timeInterval) { 
-                    clearInterval(timeInterval);
-                }
-                return;
-            }
-
-            let days = Math.floor( diff/(1000*60*60*24) );
-            let hours = Math.floor( (diff/(1000*60*60)) % 24 );
-            let minutes = Math.floor( (diff/1000/60) % 60 );
-            let seconds = Math.floor( (diff/1000) % 60 );
-
-            if (days <= 99) {
-                if (days <= 9) {
-                    days = '00' + days;
-                } else { 
-                    days = '0' + days;
-                }
-            }
-
-            hours <= 9 ? hours = '0' + hours : hours;
-            minutes <= 9 ? minutes = '0' + minutes : minutes;
-            seconds <= 9 ? seconds = '0' + seconds : seconds;
-
-            daysSpan.textContent = days;
-            hoursSpan.textContent = hours;
-            minutesSpan.textContent = minutes;
-            secondsSpan.textContent = seconds;
-
-        }
-
-        timer();
-        timeInterval = setInterval(timer, 1000);
-    };
-
-
-   /* Swiper
-    * ------------------------------------------------------ */ 
-    const ssSwiper = function() {
-
-        const mySwiper = new Swiper('.swiper-container', {
-
-            slidesPerView: 1,
-            effect: 'fade',
-            speed: 2000,
-            autoplay: {
-                delay: 5000,
-            }
-
-        });
-    };
-
-
-   /* MailChimp Form
-    * ---------------------------------------------------- */ 
-    const ssMailChimpForm = function() {
-
-        const mcForm = document.querySelector('#mc-form');
-
-        if (!mcForm) return;
-
-        // Add novalidate attribute
-        mcForm.setAttribute('novalidate', true);
-
-        // Field validation
-        function hasError(field) {
-
-            // Don't validate submits, buttons, file and reset inputs, and disabled fields
-            if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
-
-            // Get validity
-            let validity = field.validity;
-
-            // If valid, return null
-            if (validity.valid) return;
-
-            // If field is required and empty
-            if (validity.valueMissing) return 'Please enter an email address.';
-
-            // If not the right type
-            if (validity.typeMismatch) {
-                if (field.type === 'email') return 'Please enter a valid email address.';
-            }
-
-            // If pattern doesn't match
-            if (validity.patternMismatch) {
-
-                // If pattern info is included, return custom error
-                if (field.hasAttribute('title')) return field.getAttribute('title');
-
-                // Otherwise, generic error
-                return 'Please match the requested format.';
-            }
-
-            // If all else fails, return a generic catchall error
-            return 'The value you entered for this field is invalid.';
-
-        };
-
-        // Show error message
-        function showError(field, error) {
-
-            // Get field id or name
-            let id = field.id || field.name;
-            if (!id) return;
-
-            let errorMessage = field.form.querySelector('.mc-status');
-
-            // Update error message
-            errorMessage.classList.remove('success-message');
-            errorMessage.classList.add('error-message');
-            errorMessage.innerHTML = error;
-
-        };
-
-        // Display form status (callback function for JSONP)
-        window.displayMailChimpStatus = function (data) {
-
-            // Make sure the data is in the right format and that there's a status container
-            if (!data.result || !data.msg || !mcStatus ) return;
-
-            // Update our status message
-            mcStatus.innerHTML = data.msg;
-
-            // If error, add error class
-            if (data.result === 'error') {
-                mcStatus.classList.remove('success-message');
-                mcStatus.classList.add('error-message');
-                return;
-            }
-
-            // Otherwise, add success class
-            mcStatus.classList.remove('error-message');
-            mcStatus.classList.add('success-message');
-        };
-
-        // Submit the form 
-        function submitMailChimpForm(form) {
-
-            let url = cfg.mailChimpURL;
-            let emailField = form.querySelector('#mce-EMAIL');
-            let serialize = '&' + encodeURIComponent(emailField.name) + '=' + encodeURIComponent(emailField.value);
-
-            if (url == '') return;
-
-            url = url.replace('/post?u=', '/post-json?u=');
-            url += serialize + '&c=info-bg-k';
-
-            // Create script with url and callback (if specified)
-            var ref = window.document.getElementsByTagName( 'script' )[ 0 ];
-            var script = window.document.createElement( 'script' );
-            script.src = url;
-
-            // Create global variable for the status container
-            window.mcStatus = form.querySelector('.mc-status');
-            window.mcStatus.classList.remove('error-message', 'success-message')
-            window.mcStatus.innerText = 'Submitting...';
-
-            // Insert script tag into the DOM
-            ref.parentNode.insertBefore( script, ref );
-
-            // After the script is loaded (and executed), remove it
-            script.onload = function () {
-                this.remove();
-            };
-
-        };
-
-        // Check email field on submit
-        mcForm.addEventListener('submit', function (event) {
-
-            event.preventDefault();
-
-            let emailField = event.target.querySelector('#mce-EMAIL');
-            let error = hasError(emailField);
-
-            if (error) {
-                showError(emailField, error);
-                emailField.focus();
-                return;
-            }
-
-            submitMailChimpForm(this);
-
-        }, false);
-    };
-
-
-   /* Tabs
-    * ---------------------------------------------------- */ 
-    const sstabs = function(nextTab = false) {
-
-        const tabList = document.querySelector('.tab-nav__list');
-        const tabPanels = document.querySelectorAll('.tab-content__item');
-        const tabItems = document.querySelectorAll('.tab-nav__list li');
-        const tabLinks = [];
-
-        if (!(tabList && tabPanels)) return;
-
-        const tabClickEvent = function(tabLink, tabLinks, tabPanels, linkIndex, e) {
-    
-            // Reset all the tablinks
-            tabLinks.forEach(function(link) {
-                link.setAttribute('tabindex', '-1');
-                link.setAttribute('aria-selected', 'false');
-                link.parentNode.removeAttribute('data-tab-active');
-                link.removeAttribute('data-tab-active');
-            });
-    
-            // set the active link attributes
-            tabLink.setAttribute('tabindex', '0');
-            tabLink.setAttribute('aria-selected', 'true');
-            tabLink.parentNode.setAttribute('data-tab-active', '');
-            tabLink.setAttribute('data-tab-active', '');
-    
-            // Change tab panel visibility
-            tabPanels.forEach(function(panel, index) {
-                if (index != linkIndex) {
-                    panel.setAttribute('aria-hidden', 'true');
-                    panel.removeAttribute('data-tab-active');
-                } else {
-                    panel.setAttribute('aria-hidden', 'false');
-                    panel.setAttribute('data-tab-active', '');
-                }
-            });
-
-            window.dispatchEvent(new Event("resize"));
-
-        };
-    
-        const keyboardEvent = function(tabLink, tabLinks, tabPanels, tabItems, index, e) {
-
-            let keyCode = e.keyCode;
-            let currentTab = tabLinks[index];
-            let previousTab = tabLinks[index - 1];
-            let nextTab = tabLinks[index + 1];
-            let firstTab = tabLinks[0];
-            let lastTab = tabLinks[tabLinks.length - 1];
-    
-            // ArrowRight and ArrowLeft are the values when event.key is supported
-            switch (keyCode) {
-                case 'ArrowLeft':
-                case 37:
-                    e.preventDefault();
-    
-                    if (!previousTab) {
-                        lastTab.focus();
-                    } else {
-                        previousTab.focus();
-                    }
-                    break;
-    
-                case 'ArrowRight':
-                case 39:
-                    e.preventDefault();
-    
-                    if (!nextTab) {
-                        firstTab.focus();
-                    } else {
-                        nextTab.focus();
-                    }
-                    break;
-            }
-    
-        };
-
-
-        // Add accessibility roles and labels
-        tabList.setAttribute('role','tablist');
-        tabItems.forEach(function(item, index) {
-    
-            let link = item.querySelector('a');
-    
-            // collect tab links
-            tabLinks.push(link);
-            item.setAttribute('role', 'presentation');
-    
-            if (index == 0) {
-                item.setAttribute('data-tab-active', '');
-            }
-    
-        });
-    
-        // Set up tab links
-        tabLinks.forEach(function(link, i) {
-            let anchor = link.getAttribute('href').split('#')[1];
-            let attributes = {
-                'id': 'tab-link-' + i,
-                'role': 'tab',
-                'tabIndex': '-1',
-                'aria-selected': 'false',
-                'aria-controls': anchor
-            };
-    
-            // if it's the first element update the attributes
-            if (i == 0) {
-                attributes['aria-selected'] = 'true';
-                attributes.tabIndex = '0';
-                link.setAttribute('data-tab-active', '');
-            };
-    
-            // Add the various accessibility roles and labels to the links
-            for (var key in attributes) {
-                link.setAttribute(key, attributes[key]);
-            }
-                  
-            // Click Event Listener
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
-          
-            // Click Event Listener
-            link.addEventListener('focus', function(e) {
-                tabClickEvent(this, tabLinks, tabPanels, i, e);
-            });
-    
-            // Keyboard event listener
-            link.addEventListener('keydown', function(e) {
-                keyboardEvent(link, tabLinks, tabPanels, tabItems, i, e);
-            });
-        });
-    
-        // Set up tab panels
-        tabPanels.forEach(function(panel, i) {
-    
-            let attributes = {
-                'role': 'tabpanel',
-                'aria-hidden': 'true',
-                'aria-labelledby': 'tab-link-' + i
-            };
-          
-            if (nextTab) {
-                let nextTabLink = document.createElement('a');
-                let nextTabLinkIndex = (i < tabPanels.length - 1) ? i + 1 : 0;
-
-                 // set up next tab link
-                nextTabLink.setAttribute('href', '#tab-link-' + nextTabLinkIndex);
-                nextTabLink.textContent = 'Next Tab';
-                panel.appendChild(nextTabLink);
-            }
-               
-            if (i == 0) {
-                attributes['aria-hidden'] = 'false';
-                panel.setAttribute('data-tab-active', '');
-            }
-    
-            for (let key in attributes) {
-                panel.setAttribute(key, attributes[key]);
-            }
-        });
-    };
-
-
-   /* Alert Boxes
-    * ------------------------------------------------------ */
-    const ssAlertBoxes = function() {
-
-        const boxes = document.querySelectorAll('.alert-box');
+// Esperar o DOM carregar completamente
+document.addEventListener('DOMContentLoaded', function() {
   
-        boxes.forEach(function(box) {
-            box.addEventListener('click', function(event) {
-                if (event.target.matches('.alert-box__close')) {
-                    event.stopPropagation();
-                    event.target.parentElement.classList.add('hideit');
-
-                    setTimeout(function(){
-                        box.style.display = 'none';
-                    }, 500)
-                }
-            });
-        })
-    };
-
-
-   /* Smooth Scrolling
-    * ------------------------------------------------------ */
-    const ssMoveTo = function(){
-
-        const easeFunctions = {
-            easeInQuad: function (t, b, c, d) {
-                t /= d;
-                return c * t * t + b;
-            },
-            easeOutQuad: function (t, b, c, d) {
-                t /= d;
-                return -c * t* (t - 2) + b;
-            },
-            easeInOutQuad: function (t, b, c, d) {
-                t /= d/2;
-                if (t < 1) return c/2*t*t + b;
-                t--;
-                return -c/2 * (t*(t-2) - 1) + b;
-            },
-            easeInOutCubic: function (t, b, c, d) {
-                t /= d/2;
-                if (t < 1) return c/2*t*t*t + b;
-                t -= 2;
-                return c/2*(t*t*t + 2) + b;
-            }
-        }
-
-        const triggers = document.querySelectorAll('.smoothscroll');
+  // ===== Menu Mobile =====
+  const navToggle = document.querySelector('.nav-toggle');
+  const navList = document.querySelector('.nav-list');
+  const navLinks = document.querySelectorAll('.nav-list a');
+  
+  if (navToggle) {
+    navToggle.addEventListener('click', function() {
+      navToggle.classList.toggle('active');
+      navList.classList.toggle('active');
+      document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : '';
+    });
+  }
+  
+  // Fechar menu ao clicar em um link
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      if (navToggle && navList.classList.contains('active')) {
+        navToggle.classList.remove('active');
+        navList.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+  
+  // ===== Header com scroll =====
+  const header = document.querySelector('.site-header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+  
+  // ===== Smooth Scroll para links internos =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      
+      // Ignorar links vazios ou apenas "#"
+      if (targetId === '#' || targetId === '') return;
+      
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        e.preventDefault();
         
-        const moveTo = new MoveTo({
-            tolerance: 0,
-            duration: 1200,
-            easing: 'easeInOutCubic',
-            container: window
-        }, easeFunctions);
-
-        triggers.forEach(function(trigger) {
-            moveTo.registerTrigger(trigger);
+        const headerHeight = header.offsetHeight;
+        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
         });
+      }
+    });
+  });
+  
+  // ===== Animação de elementos ao scroll (Intersection Observer) =====
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  // Adicionar classe fade-in aos elementos que queremos animar
+  const animateElements = document.querySelectorAll('.card-experience, .feature-item, .step, .gallery-item');
+  animateElements.forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+  
+  // ===== Animação de contagem (para números) =====
+  function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        element.textContent = Math.round(target);
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.round(start);
+      }
+    }, 16);
+  }
+  
+  // ===== Galeria com modal (lightbox simples) =====
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  
+  galleryItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const img = this.querySelector('img');
+      if (!img) return;
+      
+      // Criar modal
+      const modal = document.createElement('div');
+      modal.className = 'gallery-modal';
+      modal.innerHTML = `
+        <div class="gallery-modal-overlay"></div>
+        <div class="gallery-modal-content">
+          <button class="gallery-modal-close">&times;</button>
+          <img src="${img.src}" alt="${img.alt}">
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+      
+      // Adicionar estilos do modal dinamicamente
+      if (!document.getElementById('gallery-modal-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'gallery-modal-styles';
+        styles.textContent = `
+          .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+          }
+          
+          .gallery-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+          }
+          
+          .gallery-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 10000;
+          }
+          
+          .gallery-modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+          }
+          
+          .gallery-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+          }
+          
+          .gallery-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+          }
+          
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+        `;
+        document.head.appendChild(styles);
+      }
+      
+      // Fechar modal
+      const closeModal = () => {
+        modal.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+          modal.remove();
+          document.body.style.overflow = '';
+        }, 300);
+      };
+      
+      modal.querySelector('.gallery-modal-close').addEventListener('click', closeModal);
+      modal.querySelector('.gallery-modal-overlay').addEventListener('click', closeModal);
+      
+      // Fechar com ESC
+      const escHandler = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', escHandler);
+        }
+      };
+      document.addEventListener('keydown', escHandler);
+    });
+  });
+  
+  // ===== Adicionar efeito parallax suave no hero =====
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const parallaxSpeed = 0.5;
+      hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+    });
+  }
+  
+  // ===== Adicionar efeito de hover nos cards =====
+  const cards = document.querySelectorAll('.card-experience, .feature-item');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transition = 'all 0.3s ease';
+    });
+  });
+  
+  // ===== Detectar se está em dispositivo móvel =====
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    document.body.classList.add('is-mobile');
+  }
+  
+  // ===== Adicionar loading lazy para imagens =====
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+  
+  // ===== Adicionar efeito de digitação no título (opcional) =====
+  function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      }
+    }
+    
+    type();
+  }
+  
+  // ===== Performance: Debounce para eventos de scroll =====
+  function debounce(func, wait = 10) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+  
+  // ===== Adicionar indicador de progresso de leitura =====
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #8b5cf6);
+    z-index: 10000;
+    transition: width 0.1s ease;
+  `;
+  document.body.appendChild(progressBar);
+  
+  window.addEventListener('scroll', debounce(function() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrolled = window.pageYOffset;
+    const progress = (scrolled / documentHeight) * 100;
+    progressBar.style.width = progress + '%';
+  }));
+  
+  // ===== Log de inicialização =====
+  console.log('🌟 Observatório Estrela do Sul - Site carregado com sucesso!');
+  console.log('📍 Sarandi/PR - Brasil');
+  console.log('🔭 Explore o universo conosco!');
+});
 
-    }; 
-
-
-   /* Initialize
-    * ------------------------------------------------------ */
-    (function ssInit() {
-
-        ssPreloader();
-        ssCountdown();
-        ssSwiper();
-        ssMailChimpForm();
-        sstabs();
-        ssAlertBoxes();
-        ssMoveTo();
-
-    })();
-
-})(document.documentElement);
+// ===== Adicionar animação de fade-out no CSS =====
+const fadeOutStyle = document.createElement('style');
+fadeOutStyle.textContent = `
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+`;
+document.head.appendChild(fadeOutStyle);
