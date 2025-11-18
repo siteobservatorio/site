@@ -1,5 +1,14 @@
 // ===== Observatório Estrela do Sul - JavaScript Principal =====
 
+// ===== Animação de fade-out global para o modal =====
+const fadeOutStyle = document.createElement('style');
+fadeOutStyle.textContent = `
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+`;
+document.head.appendChild(fadeOutStyle);
 document.addEventListener('DOMContentLoaded', function() {
   // ===== Menu Mobile =====
   // Atenção: aqui eu deixei o código preparado, mas ele só roda
@@ -362,12 +371,4 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('🔭 Explore o universo conosco!');
 });
 
-// ===== Animação de fade-out global para o modal =====
-const fadeOutStyle = document.createElement('style');
-fadeOutStyle.textContent = `
-  @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
-`;
-document.head.appendChild(fadeOutStyle);
+
