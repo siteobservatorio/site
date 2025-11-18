@@ -956,3 +956,37 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+/* -------------------------------------- */
+/* 1. Estiliza o novo contêiner de interação */
+/* -------------------------------------- */
+.card-interaction-area {
+    /* Define Flexbox para alinhar itens horizontalmente */
+    display: flex;
+    align-items: center; /* Centraliza os itens verticalmente */
+    gap: 0.5rem; /* Espaço entre o texto e o ícone */
+    margin-top: 1rem; /* Adiciona um espaço acima desta área */
+}
+
+/* -------------------------------------- */
+/* 2. Estiliza o texto (para quebrar linha e ficar visível) */
+/* -------------------------------------- */
+.card-cta-text {
+    /* Ocupa o espaço à esquerda */
+    flex-grow: 1; 
+    
+    /* Estilos visuais */
+    color: var(--color-primary); /* Use a cor verde ou amarela do seu tema para destaque */
+    font-weight: bold;
+    line-height: 1.3; /* Melhora a leitura do texto quebrado */
+    font-size: 1rem;
+}
+
+/* -------------------------------------- */
+/* 3. Garante que o ícone do WhatsApp não quebre linha */
+/* -------------------------------------- */
+.card-btn-whatsapp {
+    /* Impede que o ícone seja comprimido */
+    flex-shrink: 0; 
+    /* Adiciona margem para que não toque no botão retangular abaixo, se houver */
+    margin-bottom: 0.5rem; 
+}
