@@ -1496,3 +1496,33 @@ section {
 .logo-img {
   width: 64px;
 }
+/* Botão de WhatsApp dos cards de experiências */
+.card-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.96);
+  color: #f9fafb;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* AQUI é onde encolhe o ícone gigante */
+.card-btn-whatsapp svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Se quiser o texto quebrando em duas linhas em telas pequenas */
+@media (max-width: 480px) {
+  .card-btn-whatsapp {
+    white-space: normal;
+    text-align: left;
+  }
+}
