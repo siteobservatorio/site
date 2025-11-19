@@ -83,7 +83,7 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: auto;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
@@ -242,6 +242,7 @@ section {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  color: var(--color-white);
 }
 
 .hero::before {
@@ -251,7 +252,7 @@ section {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(186, 191, 204, 0.3) 0%, rgba(111, 137, 197, 0.8) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -262,6 +263,7 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
+  color: var(--color-white);
   align-items: center;
 }
 
