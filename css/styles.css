@@ -83,8 +83,8 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: auto;
-  margin: 0 auto;
+  max-width: 100px;
+  margin: 0 100px;
   padding: top;
 }
 
