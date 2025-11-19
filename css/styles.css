@@ -85,7 +85,7 @@ body {
   width: 100%;
   max-width: auto;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: top;
 }
 
 /* Clearfix para evitar sobreposição */
@@ -235,6 +235,7 @@ section {
 /* ===== Hero Section ===== */
 .hero {
   padding: var(--spacing-3xl) 0;
+  padding-top: 50px;
   min-height: calc(100vh - 100px);
   display: flex;
   align-items: center;
