@@ -83,9 +83,9 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: 100px;
-  margin: 0 100px;
-  padding: top;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 /* Clearfix para evitar sobreposição */
