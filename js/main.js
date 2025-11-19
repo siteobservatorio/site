@@ -232,11 +232,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
       const heroHeight = hero.offsetHeight;
-      const parallaxSpeed = 0.7;
+      //const parallaxSpeed = 0.7;
       
-      hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+      //hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
       
-      const opacity = Math.max(0, 1 - (scrolled / (heroHeight * 0.6)));
+      //const opacity = Math.max(0, 1 - (scrolled / (heroHeight * 0.6)));
       if (heroText) heroText.style.opacity = opacity;
       if (heroHighlight) heroHighlight.style.opacity = opacity;
       
